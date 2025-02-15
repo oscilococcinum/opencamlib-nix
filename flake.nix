@@ -4,11 +4,11 @@
   };
 
   outputs = { nixpkgs, ... }@inputs: {
-    packages = builtins.listToAttrs (map (system: 
+    packages = builtins.listToAttrs (map (system:
       {
         name = system;
         value = with import nixpkgs { inherit system; config.allowUnfree = true;}; rec {
-          
+
           opencamlib = pkgs.callPackage (import ./opencamlib) { };
 
           opencamlib-pypi = pkgs.callPackage (import ./opencamlib/pypi.nix) { };

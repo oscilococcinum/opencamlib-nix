@@ -2,28 +2,24 @@
   lib,
   stdenv,
   fetchFromGitHub,
+  pkgs,
   boost,
-
-  # Args to override
-  version,
-  sourceRev,
-  sourceHash
+  cmake,
 }:
 
 stdenv.mkDerivation rec {
   pname = "opencamlib";
-
-  inherit version;
+  version = "dev";
 
   src = fetchFromGitHub {
-    owner = "aewallin";
-    repo = "opencamlib";
-    rev = sourceRev;
-    hash = sourceHash;
+    owner = "oscilococcinum";
+    repo = "opencamlib-nix";
+    rev = "master";
+    hash = "sha256-BaROCKrxXBUwHbqsXyiW7HXER4cf+wH6MeQ+2o0BAMA=";
   };
 
   nativeBuildInputs = [
-    camke
+    cmake
     boost
   ];
 
@@ -32,9 +28,7 @@ stdenv.mkDerivation rec {
     -D BOOST_ROOT=/path/to/boost
   '';
 
-  buildInputs = [
-
-  ];
+  buildInputs = [];
 
   outputs = [
     "out"
